@@ -11,6 +11,8 @@ import json
 import base64
 import uuid
 import logging
+import hmac
+import hashlib
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple, Any
 
@@ -56,6 +58,21 @@ class CryptoService:
         # Keep track of algorithm benchmark results
         self.benchmark_results = {}
     
+    def generate_hmac(self, message_bytes, session_id):
+        """Generate HMAC for a message without modifying it"""
+        session = self.hmac_manager.get_hmac_session(session_id)
+        if not session:
+            raise ValueError(f"No HMAC session found for ID: {session_id}")
+        
+        key = session.get("key")
+        if not key:
+            raise ValueError(f"No HMAC key found for session: {session_id}")
+        
+        # Generate HMAC
+        h = hmac.new(key, message_bytes, hashlib.sha256)
+        signature = base64.b64encode(h.digest()).decode('utf-8')
+        
+        return signature
     def generate_rsa_keys(self, key_size: int = 2048) -> Dict[str, str]:
         """
         Generate RSA key pair

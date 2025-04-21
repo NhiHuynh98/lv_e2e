@@ -1,49 +1,49 @@
 {
     "uno": {
         "RSA-2048": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4e0Cg035zF2TVVQShGG/\nkixpfZfRNC8XJmEPTF0lWH8sw5HoWAhU7AH2nYYc8TNuM+nIQv7nkffAHViYN6Wp\njypvgqBFRy/xhEb7fmqu/Hvq+RYKOWOBXt5OnalbwvYhj9Rkg5WLys5IXIwpjJUk\nS/sOrkwgM9vMIrAaRb2GWlWB7p7Divtbz/7SjiLrMy2qe/wHAAzt1gHITyljGM0n\nsvgpIQmIBxe9+S8V/o+RXttUAJ1JOfK8doxOwIV7KSxoPOHvC7kxf1I/chkTZqRV\nhwIIoda/tYmJLjDl1UbxVmgUggAsr002wxqwM0IH1SHQHQSmRdT1rsikUTZcXPl9\nGwIDAQAB\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-256\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"ledekO7bgWFRYVDJiCyCtrTi_JM3jlWvn2BoGmL_IT1HEjrNwm5eND5_ibYXrBn_wznGVPdT8DWeEJdCAMYW5a0sO3STyVx4LnioZpeeylGf3nWJDfc7PvGuDP6hO-g_itzT9iRVM9nHRGhNKlFLpEkAvWpa0Auk5dxyMtQuFsG4BX5xo94wMbZpPmJ24W9wdYZyU5xpnAH00GLZVXXdf_XpwfPCWrnGWwKn6eNvTGC_uR5l3ki09crK7rlhYfaxpUzxG_Ls5RjqGQfPpAou_PsKpfMXT9j92gptGlrSXLo7MrqJQ9LV6Zvf0sZ37Hod_sc7L7Q40ZlxH8yjAt750w\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:20:31.784079"
+            "timestamp": "2025-04-18T11:01:01.758111"
         },
         "RSA-3072": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA0YeaD46mSAjfb6RH4Mx1\n+zF6arbuUH9ESkdB7ucdn+QNUlcnPPqh0T11Asxpscde4QNQHWpPjTVE0/nXFNqQ\nikr6as028wGx7K/J31LJBPeFZ9uo7mDj6AFX6Oj6FunomN6e2DtIY06Mx02CayGz\nAmqZIoDwBMVQk0YY8RISG4UGDPyA9ybSiHTLhdKOwumz9BN1IZPb0c+gr6HtoWCb\nXqT6DMdvFA3OkzdX0fBALr5eFkMxoLMyyccEYEIsipsUJZYFcfZxMqRMa1UdquNG\noX9HkdTa8kxFh8RtH2sZccBvw3JvC6o+Nr/TRq6YjUdaIP/XaHX/qslFd9K21fN6\nUjYvssuIPOZsEF7/LXIvgie2OhKxERw7b35qrwb9sZYJvqvDXugL7HsLaRoNt2Eh\nl6DEtqgLVx9nziZZjTyk1RQxO/I1ofFUG+lKQNhrCZkuLT617HbuyQp8CzkeNxYR\njEOTh8RaC6YTYKUUIJnFc+YWE5Dr9oFNL3fhuq32d6/fAgMBAAE=\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-512\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"0ZaKGj91GAIF9sanuBLvZIxQUbj8qJTMieDDn0eR95pWugaFLvhFdi52GboWr9FhVO16gbm8RaEuV7GWVeOYT28MGdZ2FMGzD-Pkb-HTNlPg1mYKePTS3UfJR5CUIYkwGf-4DxoF74R7xHlhhZjyMQYhKwwBNhOnozmmmLSg98j31mEJa2uEiRzRfJrVFusUCnM_8kq947ZXr5EYqbshu5M5kj8Kcu7wpn1jTrcp-zg2IX8s55fetMwMFuPVGvQNtuK2Mt8gWQsw4E7eB8TSklWeroOII8VTFAHNO_QbbzPDKccIeDkFDGBFgAl1joymjnGFl52Mi3mBvuqSbA8JbV_WKcOZSyM8dtYBjW9PQPzE342DyVYDhu41UKp0t7JkxK4uXeYufpyamBhJaLA_VNqixnJgAz1j54b5KxPjIypSlzPj49TFByx4eDyi6v8ZZR8TprVpwDQaj44IxUP6eBNFCEMIdSwshRwqs9siU6QwX0Aee3SZOdsbvDlcT0GJ\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:20:32.610947"
+            "timestamp": "2025-04-18T11:01:02.220246"
         },
         "RSA-4096": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAth8haY35YDDLCDiDN/ZQ\nGFYQCRhrjBm2qVcc+E0FOS5sDOvkV0Mcv/jUhjNhnpTSpzfFPpl9zbmQVZe7EIrW\nYic/1jVywJeUpdUlyDq4uMxkCKEGtmUBrrv0xeS7rY/nCs3uzs3SDfz2BtygGKfi\nHIr4P5FEUMV/HciXhHUfzzNLhGAhOk91P6fBOLqI1pq6tlrnmzo4mzPZO/nAimNw\n2w1yie3eq28iaryFYDyeOuhuvApBUsH4wCok0W9mVfwKOSbBt61i0Htf/2+ESwY0\nROsWhXv8S45QrpdmQWU33hGaiUkkDH6Xo0Bohh+7TiQumzr92A+uHRaIVZ8FSDOF\nBc8BUv6ye+PIh0MX/OVnhjYR8+AKUwd+gVg1s7zKBpQi7QdvS0fgNeUO0km6BEBt\n41hW7PzPxA2SGWfacgoTEm7d0YQx4FwYbPWqDH3BAGVB8knONgdPo53UW6bTWdk8\nilN7phejckizDpr4Oq4UuY0ZPt58xyCnjtHYBMAeg3+S0kJ0RtL4Bz1tAOSBw3Ep\ncmi1WnPtceQeJPEOYnNJ040ewbcvGBXCKpog1oKK+WMpVlSkaqfURYLen9cPqqq9\nZfpIWgHLQXOd5/gBdDaAk2eJhpmki06Dv7IF5nBtqaIcwiZSjDp+N64nhdDRZBl4\nD/xHRaGlOeEilpo+woherF0CAwEAAQ==\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-512\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"soiXGo8wqO6nL5OkFdXNB9rJEIiqo9xt8oxoXYXL551XH6RMmPBpfjmbwdgN-iZgPUrJKDJ0gIjVT-prYY5fu4C-T2zG58JapeFlee6i82WSYjVC7UzM5w7SJ2k3oDuqLkPajYCcWqmy_DZ6dDImWj9CtR7h_O6eE054FNII1DJztLq3tRUI63IShddzbTGTKGrQfVdpOpZB3DkJZJzOhPs7KYqugwhtxwbMkN759a4E9Dm_B42ADPRvlREbfikVahKHVqWpcqMX_8_gsVa0TmxDrjpse1yybRLBDQdpKWNqNGL5ei4ULbK9fTHI7JGr_4BcGHEWdUwaboMvtse0NajLC4_ufRoLyMonIax9ydpz6dPlJnzXgvl950HpcSkAciMrb8U59d8VH-U4XZ5EgtdHg2YCiuuZP4N96_1gDdGUi9G0XkPT-sWPVnoOgwOGQxxfK2x0dIpTle-ukH8Wm39puimxtXW_dRfTbeP8ojQKKXLnXX7380nwrodLGsxG7kmo0tNtb3j2o7zUhXtc9c7y4bbcP5cDnkdTMZBO0KYDudYaVQJm6NiZ5KE-nSjf94JqskFRiW1H21mrw3xCP81bQ7NzknBdLMBs9EcEyX3UtZrJjTBiAyXxZ5echzp0_axjMeV1Lj7OgUsZtE6meudLyCv5h81ywU_fW79vCck\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.534951"
+            "timestamp": "2025-04-18T11:01:03.265683"
         },
         "ECC-256": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7uGYzUFU+SEhcoHyKVYitHwEoBtA\nQiOsw4iMJPmr4srN06ERa0XNjzyYniVJZ8hEo/NnGOf1h3h8CNHzbKHKoA==\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-256\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"N_ItzyxaAtan1oNlehxOshM_ugYowfKFay4rUn-VBKc\",\"y\":\"Pb04rxY6SDrliR2uknSqDEiZc9sN8OQVZ6g-vCOnEGQ\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.541770"
+            "timestamp": "2025-04-18T11:01:03.271076"
         },
         "ECC-384": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAET/CTPdESbs714bY3dRh5fUk9xMjQ+tXL\nPbHswT87koqUrvk2Qv8s22lHM39RveX+uFil1LiuWVHVudJkKas4g5ZZ8IX0SrTc\nSjJzYHdWeLIGLFZDFRzqX3YlMuc94vz2\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-384\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"-xyWg4RYClmMNCDVZ3k5KnK9LWhmzO0tRvyJVdyBUAojkwmBD8sD7O6qJMMmd5ys\",\"y\":\"HKXMXt-gtBnd2AeYhNx3j7qGTxVKT7HpRnZcGeXgoHKHLLZrjHfOYDvyhQx1u4za\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.547897"
+            "timestamp": "2025-04-18T11:01:03.277254"
         },
         "ECC-521": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQABoEctEyCTBl1Iq9vmr8CxUlSQzMV\nZl4lyXaPU74idaJSJzJGTmq6+FAETyhXqF7y5oxKfQ9Y4avuEzxuRtyDD6gA8EGk\nDOwKfDDnCtZyZQzME1nuyiYvwCmG5wwUeOAhcWXr45nJurZ03aant1hEsKihq8eR\n5D94kzZiJ3CngITC/5o=\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-521\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"ASbSpPDa32i-xECvnKKvcBupgZOSAtspNX5BkbIYmgMFSE60mMgisOmMd-kv_59bdEYlhj0TfoVi0iROYIU5qU5K\",\"y\":\"AOioGCUulHeYOVzhdShevbBIa25xglqcLL6TlPmHJeDJ1DCLUVo60pSVhMio-chZe3Jf2EWjKkNKRCvnJDU8LWiO\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.553791"
+            "timestamp": "2025-04-18T11:01:03.283473"
         },
         "DH-2048": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqLt3lmMYDxzxBMsLsLy5\nUXTcZrVCCDFAdkGQoMN5Vm+6oLlJfJMrUTJG/CQbRWmm2hUDzNFI3PwFiY9cM+/m\nOxiPh3ZsIbLPClDbvHmswnVGI5rMFF9HPKtQ0jHAPGwmDkNyIQNhOSmnhIg6iE9M\nDHzNOGnxJ3AdORcLok1AQA0FfCPJqJL4KLzGOOBVGyBJiOvRCnN9j/ZLsVP9R4GS\nnE4F3EXmKESGWvOJ7XDMBdCdwXEUI/cco3gIDZMYFbVfGPEzVYZ55e89Q/n8K9Nz\n8MzLZUZvF9IjGjmFPf3CQyXtUhPJMwseOgXa3zBJDGlX4hJxTm+tZ0TQ1lQmDGJZ\nNwIDAQAB\n-----END PUBLIC KEY-----",
-            "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.559060"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"2048\",\"x\":\"aW8xZGkwcDJ3NGc=\"}",
+            "parameters": "{\"prime\":\"OGxuczMwZ3Y0a24=\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T11:01:03.287475"
         },
         "DH-3072": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqLt3lmMYDxzxBMsLsLy5\nUXTcZrVCCDFAdkGQoMN5Vm+6oLlJfJMrUTJG/CQbRWmm2hUDzNFI3PwFiY9cM+/m\nOxiPh3ZsIbLPClDbvHmswnVGI5rMFF9HPKtQ0jHAPGwmDkNyIQNhOSmnhIg6iE9M\nDHzNOGnxJ3AdORcLok1AQA0FfCPJqJL4KLzGOOBVGyBJiOvRCnN9j/ZLsVP9R4GS\nnE4F3EXmKESGWvOJ7XDMBdCdwXEUI/cco3gIDZMYFbVfGPEzVYZ55e89Q/n8K9Nz\n8MzLZUZvF9IjGjmFPf3CQyXtUhPJMwseOgXa3zBJDGlX4hJxTm+tZ0TQ1lQmDGJZ\nNwIDAQAB\n-----END PUBLIC KEY-----",
-            "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.564962"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"3072\",\"x\":\"ZGJqZDRwdGtucmQ=\"}",
+            "parameters": "{\"prime\":\"cHFmajgwa25uMg==\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T11:01:03.292191"
         },
         "DH-4096": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqLt3lmMYDxzxBMsLsLy5\nUXTcZrVCCDFAdkGQoMN5Vm+6oLlJfJMrUTJG/CQbRWmm2hUDzNFI3PwFiY9cM+/m\nOxiPh3ZsIbLPClDbvHmswnVGI5rMFF9HPKtQ0jHAPGwmDkNyIQNhOSmnhIg6iE9M\nDHzNOGnxJ3AdORcLok1AQA0FfCPJqJL4KLzGOOBVGyBJiOvRCnN9j/ZLsVP9R4GS\nnE4F3EXmKESGWvOJ7XDMBdCdwXEUI/cco3gIDZMYFbVfGPEzVYZ55e89Q/n8K9Nz\n8MzLZUZvF9IjGjmFPf3CQyXtUhPJMwseOgXa3zBJDGlX4hJxTm+tZ0TQ1lQmDGJZ\nNwIDAQAB\n-----END PUBLIC KEY-----",
-            "parameters": null,
-            "timestamp": "2025-04-14T09:20:34.571131"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"4096\",\"x\":\"OG9rdHlwN2t1OG8=\"}",
+            "parameters": "{\"prime\":\"ZW15Y3RjM21pdWg=\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T11:01:03.297335"
         }
     },
     "meme1": {
@@ -65,49 +65,49 @@
     },
     "dd": {
         "RSA-2048": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockRSA2048PublicKey\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-256\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"89K9OrbV95U90caeTLGEZWQFhYLD6NXrl4yh2cLfAs4DhbCRCu87SnfESlN84g_YXfu96dKYhVusiGLoXuN7VWgr2oeIFwKnl9-oHPvkwxICCFsHhz1R9YIZGFVn_rnJ4z76y-oYDsnj_WyTXeGKT19DXHIdpFo1B5Fxvp6LczXoVY0VtGbLUUQ78Al-1U_j_hcOGsRy7UyEkPmCrV_nh9gHkWMGqcifBECRF5xyiu0UfSh_spOnUu21UEp0WlJ_Ea355_PTgdoqhoB0s_F2cHw4ra7egCh6sARX7kSGMe4Vq1HBhIxH2txAt3GItNU-_yr0IGVdy0OIX9GPllSvIQ\"}",
             "parameters": null,
-            "timestamp": "2025-03-27T09:11:54.309431"
+            "timestamp": "2025-04-18T10:14:24.213867"
         },
         "RSA-3072": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockRSA3072PublicKey\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-512\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"u915CSRd8uZZ_E0x-o8h_ukRtmQia9KVlALc9YmXKbdw-npR55TjXBcGg9H3VZTocskGk0SFpm0gv2nJu_R6zrqmKpE5IknWI3g0rX-rRN5VzDzryRQVWMLFrCHzj9nyn8VZV9k3Bu-LJmcnkN1CsjX0DvvH7vOoyXA7K58KgKsXKcVUGMBeoPAKUsQRawWN-46If3im1chN6dmSbzng9wvLAeuNB14Pl7iNVFMrW1Ow3zthweqXiyVb2b_SiosZA4QfuNBA0kOdlKozCB_1mgjFVl3Y1UmhKUuMzcID8JxTx7GVeh52H-BAWDN84_YlL2IRBca5d4_cJg6d_TOfIdvR0kh2tgKbUi5RhUAnDIFOqvNlGWRKoke2gr7CAPnHG3h31x7Wjscu1CUfUgqqw9DS1QVHGTYZucPFtHWIgxoaCNJSvIgxY1NIBOn3454FpvLIZ3gW9r9JSya_YSZEBRb8T8gyp1wZ1UQblPpFxn9xUVuP9-uAngr73RoAFtiH\"}",
             "parameters": null,
-            "timestamp": "2025-03-27T09:11:54.815470"
+            "timestamp": "2025-04-18T10:14:24.847991"
         },
         "RSA-4096": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockRSA4096PublicKey\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-512\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"z4fYN9aJ6O7Z9yTvfj73IqHh3ldIPYQviZ8Pk-n2MF6sirlPUmDe02r4J12rhOKMEslTHFy9I5zXxCgbp2KsUQO4Pbc_y935ghpTUd93rDfJQpkxSolCfJaRHYh0tYvummyUVrgLh-bBfPsqeYdOB6Wto_vUMONhlqL6iSsA7RiqT8DKJ7f9wvRaLRa5Mym2Rq6f7HreErPZqu2gdN8wl_hY5_C65UofrLRhCsWwBoyH2-zC1Fv2Q_dAPG8EKtlboowGnCjrbqm1bvLVTim9bzz-SwpH96ShyZpQLkeBhqiotCt6KmvDqtga7eiDTIOHq5a9J2aA7q9lzHtghUppbZt1T4mYhzsDZUWORdnOGDNeYN_DG6i3otML9OHX3cEuG5ts_ddHtItVgT_J6_YmwJVKeHnGepjXBoALlqyRjDvWOvcmmXCNj3N1L7T8cgAh3_sx0W5m9XW99TIP2TNAHB4vRetob7QnGWklNcYcdwn83CKXuIkU41RPMOnpXEeMRiI8KuhF7hKLmwpea0UYv92IWI2w1brhq8c6pL40bwGt0YDreV1d6GsCMUD5OjsN1aCWYZHiWu_NUbK1MhhwBLbDVSdN1ifO_zN3I8mbKA3_mN04FAFk9phQdpgj8CEnWNAXAxJnRfB3mfFl0SifGHX7LOfSAjBNjf2o54g5Ifs\"}",
             "parameters": null,
-            "timestamp": "2025-03-27T09:11:55.322917"
+            "timestamp": "2025-04-18T10:14:28.428362"
         },
         "ECC-256": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockECC256PublicKey\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-256\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"LRLUa11ykB6s0_ZqLtPAE0wBL_HJJIOVq-zqhIfxb4s\",\"y\":\"itC9-UKVwhkTW41basMlvaBFJHjtMt-KxGfZp2esqcQ\"}",
             "parameters": null,
-            "timestamp": "2025-03-27T09:11:55.830221"
+            "timestamp": "2025-04-18T10:14:28.434482"
         },
         "ECC-384": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockECC384PublicKey\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-384\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"npwOVUB3LN8rB17jLKHcuKjegpjci3Lx3I_LnmWk_cFZ5PNTjVYPNKG08BmVdUeN\",\"y\":\"9VfZY9fabvtjrKYyZedVUJb1tWfYXco0B7edRvPEAozuiMc7GmZOGcCYQ6nkmyMX\"}",
             "parameters": null,
-            "timestamp": "2025-03-27T09:11:56.337946"
+            "timestamp": "2025-04-18T10:14:28.440878"
         },
         "ECC-521": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockECC521PublicKey\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-521\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"AO4es9ZMaJSG4HI1ZDqlzF0c_cTaBc-4uh8VYIU8HKJPKEF5Dh-o88yEXueuJH_Ru3HvnPUPURRhL8JcC25391R-\",\"y\":\"AHSTTqYEMAqo2TEwMiVsZC4wtkc11i3apyLVjgZyzw7o-wcq7tykpFyUlL_34wA7Vf7u8W2SCjgs-1kj4yMMHoa9\"}",
             "parameters": null,
-            "timestamp": "2025-03-27T09:11:56.844651"
+            "timestamp": "2025-04-18T10:14:28.447684"
         },
         "DH-2048": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockDH2048PublicKey\n-----END PUBLIC KEY-----",
-            "parameters": "-----BEGIN DH PARAMETERS-----\nMockDHParameters\n-----END DH PARAMETERS-----",
-            "timestamp": "2025-03-27T09:11:57.351197"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"2048\",\"x\":\"Ym40anBkbDN5aHM=\"}",
+            "parameters": "{\"prime\":\"Z2E5enc1azdtNmM=\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T10:14:28.453803"
         },
         "DH-3072": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockDH3072PublicKey\n-----END PUBLIC KEY-----",
-            "parameters": "-----BEGIN DH PARAMETERS-----\nMockDHParameters\n-----END DH PARAMETERS-----",
-            "timestamp": "2025-03-27T09:11:57.859977"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"3072\",\"x\":\"MHhwcnNzdXBqZjY=\"}",
+            "parameters": "{\"prime\":\"dm1mM2luN2NzdA==\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T10:14:28.459652"
         },
         "DH-4096": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMockDH4096PublicKey\n-----END PUBLIC KEY-----",
-            "parameters": "-----BEGIN DH PARAMETERS-----\nMockDHParameters\n-----END DH PARAMETERS-----",
-            "timestamp": "2025-03-27T08:45:00.926848"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"4096\",\"x\":\"cHBqcndwNWVvaA==\"}",
+            "parameters": "{\"prime\":\"ODBlano5ajUxd2o=\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T10:14:28.465468"
         }
     },
     "sss": {
@@ -159,49 +159,49 @@
     },
     "meme": {
         "RSA-2048": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAulupQNK4QCrGjev9W0Dw\nh+XRuRtdLrqTg6oHgCTu3Ff5vJxK9gv0yMbsYDg7yAOHS3HlEYJ3GrKEA9dqJrhK\npSIinNj3EIAML6tRRg1w+yfxW2eFeq3yQaHEDjzIMhsRdaizJ5bl3YQ0iFCnb7dE\nFiSuhjmIrArL+042Yt7eNMeCv03UXJgRtTJQrjfJXWpPnSCSfU4Hp4KlZZPYjFdT\nuu5/W4p74yCuZ83LAzXjUsg0RaoiAqO8UEp+AXpe+jZfQ7zdErrQJfRX/m0nKI7m\nqPmXGn/5EqcwacqSwiODr83EAZu9YU3u2/eD10HCmDsqWs/9jR8Q9YwO/a23rmYo\nrwIDAQAB\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-256\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"mRYgOhvm4k1oKNacqG_CSteeQFzMJpbdffK-d9DPX5CjQiaCMqy-Kcd4dr2R47ae_Xon9vASFLvQBw4jFxIUk1B_iLnGpu4oZk8oqLDe3kRJmbEuDaRNzPX4lgxWpRCe6oLX8Z4h2PlSCxZHS9MflWmHk0nkWrZC_7TTlMWvVhMmx_SsgL-8yzcL9YxttzTpQFWYnzU1lUSpEgnw37MLHG14K4ZIgoYbTcOpAgEipd4rWsHL2F1GLgTYRLx9EeHECF-Qq7oz450s8A6uE4aTpLNaLNc6xaI_5dz-J2zCdxPpMSpmDRYOKVDMJR31VmHCTyj3ML5J5BFFD_nRcf5g1Q\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:18:42.983235"
+            "timestamp": "2025-04-18T10:50:55.446178"
         },
         "RSA-3072": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA2BWABA9wnX4EZcQvkpMv\nY+R2XDEiiPK1Fd38gyX/PVX4wnKMQH7cw3NGyAact1ho8sA7TnCQygs+Ol8rElUN\nRmCNcxLu2bRP+Nub/w5Xr/YzT+lrh2Buq9aaBThh8un/qsLP2poN0tutr59wXpkT\n57yux/XCV/x8UlhnKefAb4bi6leAD9pQaUEF2W72gCymLYO1NEzZLGPb77MLKFK8\nLjKHvTlaK3BhsEugDgakMp30GNs/n+8IskNxDTAvZoYvtIIikdfrY6gBoXHjELKn\nWUQRIUgltkUnS/7Rppsu1AewCtd4zzVeqt9CowukoW9YVajnWHe3sATR6BTHnSLM\nTMFIOIxOrh6tzQHwbrVuZ3w4m9prre/kPUX9vhPTt9U4cRqpNYPfWLJg5Hrbwk+I\n2Lxybf9ibK+fJRLYyOjfTE+m+h5lNPI7ZxymfHsSRItmqNassCxS4R0n2x+2u43l\nVHHqIPl9J/k1flyESctwNhxOqWmECylvchBAmUkEvBSHAgMBAAE=\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-512\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"rfwtAON7iVgoQTzigVc-uDyfGQwDxsrKkh0jcsU9kWc9E2NkqTfeNQNpIPETTwMifOLlUCAYXd231U2O_0awocdBTI716OYNaRUrz0brASE7zslYe71__nUjd-Aw8QR5IHTrJ-gSqOGIwp_qLdlSpN8BQOG6FJDEyEoltAC36uYaRwP8D0p1BDn5Ob5UoiPci-TBi5IbGInZr772tHmDuDdkDjvvmnXfsxaLtx39OW-EdR5hSVJezZ9nMXt-9qsooJwXqUNF7M5p5aT24dtAxhQAdfeCAVn5S2UT0r3zMgfRPfDZWD7J8CE73l47cW7M9MlnCDZVB9y3ScdBoP8lfbDYkyc0Sa04HLM45k335qsRkfsOSs57lpcXZBFWsyo4H7v0zTiC1FWOrkVSF9i7LByDAGlYs182oAsVGAsaujDp7rAv-fpNgX_zeDsE_iPAR6fLSLe_nvFgjceuaua8gNCcpDDZHyLDfIwVH_H7JGdzIGGVmU1SIbAREVFCfTYB\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:18:43.825842"
+            "timestamp": "2025-04-18T10:50:55.697273"
         },
         "RSA-4096": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEApXLX3ziFjPYOIPmcNjSb\nCXmKYwudgNzr96SFzPqMRrukn1BsLjKHp0tLXSONKLWsPP2dg9yDvtPDOCixmI/I\nx4OM4RVYhU+U3oYlDPY2wonpfA/3jx7Al0MXNJjrSPRBbtLf9wE/HHkph8l+6sW/\nFYCGUt+2z0mV/gw1y3nAxBHAXMhWgH60h+0Rix33XrMa1boxcv8j8Lg4py7KFCT5\nsJmuGZB4y1eoN2iEMSrfpDwK1SlpK4sElNF9PfBkGLHjUypiym4US9Iw+4R1F3jz\nRCrEe4OLlRKze/hVhV2NCPOXVDUPsUHtaNqpf+Op0q7N7qm4wuihGryA+le99GlS\nnpmIb1Dg3Q15yuxhVPFmSW9Pk2bNQlzs7WMWy4655+WSyP9VRsUA2+vvL5EqbRXx\n0j7lHxR3f1JGFrAiJqIM0f76/M8zOyU1Hl2VugABv8MYUOAs+h52el6x6qXyweF9\nfioJi7JL7XaeH6531DoR73iTc3dc50+Yl4uJ/lqt3/REeJjvF3muG6X02/lyGjFc\nIsGytvpKhBA0H+fiDTzQSOS1Af/4G8SSZYfkb5vUPoqJwAF+3td/hjANw0BFaZLs\nNfisHy6/wc+6k2nxEJpJsQV9hlGWRlRfDDl+ZLhtRpadkWEBhXD/EvJTOltREaYY\n3GYV6ksikWlPXjqmRa4/IgUCAwEAAQ==\n-----END PUBLIC KEY-----",
+            "public_key": "{\"alg\":\"RSA-OAEP-512\",\"e\":\"AQAB\",\"ext\":true,\"key_ops\":[\"encrypt\"],\"kty\":\"RSA\",\"n\":\"xPaknlJH2EjyC6ZYBmscnv6d1ad_i53AMT7aop_mCNclGmbKU6jVtZg2XfKuhMGAPWTokE5GXkTUaw0kRTez2CTOVTAwbO6x4XtwKxdGXVTP8n1Iy0dkTEDMsEZFuUInzR6hcOyQaOQ8a4leL17vANbAxuzhlmKUG3wsn043o5lmiQwIIieHYWCBKcb8fRX_hVjULDKYxs7thhnUYFRarN0ccx6iHrEzCIJ3yKg2FeipgqP1e2nKFQX8--3fI_Lg248BrREvUk4vBYejF1ttk0JmDqBrKixzJOsqbGOh1ALxrEFQAtBWN8DEzopASJ_r5pLaxMbf9xjXLTgOsOgn1M64hw4n9hDX_KMs_3-lWNkMfnttXqtG9KNFJUtyjOoq0ECgdD4JYElEQ8jUnvPwJoWOkQ-YjoG86UfBmhBatPCMoFWg6QTNvpuMXZegA3iNlER3UGKRtBC8_-uUybr69vCgoohenuSZZhsPWmRK1P4f_CYpAAwn5gknOIWsnJHnahjsgW4fiBXpoH292xrCWiQuazEYpgQeoajdZ0vuh2UGaOUshRkDHt3NhqGrT_ykIhjofMdYhb1eL9wW1C_X7f8ZE-4XgPuZNl2RFv1kUT7ep6E4ZkuOmlcLxegtz0kxMmcPEIFVOfM2r5ZzQhk6jzpl1Hclgj0z9Sm3MMqRJDs\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.008533"
+            "timestamp": "2025-04-18T10:50:56.756444"
         },
         "ECC-256": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE5zPiSMpXkxqcNzGjjuxN1PJdHYuf\njidvpG0ke6/VP3Ava+YrlvS09HN6IiSVqSlz01pPV2jDqpDAEdRDwCvcKw==\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-256\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"mY5DZDlQs5SCHDUknnn9Z5ue4Q8Rn9Wu3nUkfyEuJpE\",\"y\":\"HdiVHFlpmiMmpwq8oU6GVF3oaq4kmKLYoaDM4u_z0bc\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.015240"
+            "timestamp": "2025-04-18T10:50:56.761946"
         },
         "ECC-384": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEu+mVdsD1t6DEp2MnJVoHt6jXhAkjqbEb\npq4kxKVps2PgNyunGPWaQ8fJCyYjJFkAQ56/4aRCW9TUrJxC9/2nycNM/Dq9DJeB\nAKYijXewiKsDP1nCTWqQDl6e5M3tHD35\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-384\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"RNZMl3XaFUZpEsehmpXFAqh-vPEBYLlN1SMtmVTTtGeft0HU47-kI80H2XlSYIE4\",\"y\":\"pa-iYArH9dkV9SB5ZWxWsCwsKdpKAJ3PJpHFlwz_95zv9Udil2iZktPiWcNlw73d\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.021515"
+            "timestamp": "2025-04-18T10:50:56.766826"
         },
         "ECC-521": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQA9C7OAzBjdvim9u1XXgRrix5KaMJz\n7l4rLPnmAAxXmI0py8sWkN2HSuNoKCXZJ562B1D6XfKPuxVCyj3gWiaOEEABf97x\ng4c4P6iMnbR4xGX3dJXc5LLPIuhntE53fgEsu3ysvMP11dpC4KUmm5mnGWTVpAlc\nxyLrPvtdOrZvZjxU5eQ=\n-----END PUBLIC KEY-----",
+            "public_key": "{\"crv\":\"P-521\",\"ext\":true,\"key_ops\":[],\"kty\":\"EC\",\"x\":\"AYY8wbZ1hIAxkkXnjvYKyuIPZ3482e6HxV-2n-FL1w0kjKIZ3SBZTxOd8bo0SjGvbp2aTi3HJHomdZYv_4V3XeDt\",\"y\":\"APeS_ondxoiNoZizEzwof063hkmlduT7DAYTcllEqFTPuLAoyX4Z9_tf955ignWY3D2VPC6f0L4R82ctI3LXBQhX\"}",
             "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.028082"
+            "timestamp": "2025-04-18T10:50:56.772785"
         },
         "DH-2048": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqLt3lmMYDxzxBMsLsLy5\nUXTcZrVCCDFAdkGQoMN5Vm+6oLlJfJMrUTJG/CQbRWmm2hUDzNFI3PwFiY9cM+/m\nOxiPh3ZsIbLPClDbvHmswnVGI5rMFF9HPKtQ0jHAPGwmDkNyIQNhOSmnhIg6iE9M\nDHzNOGnxJ3AdORcLok1AQA0FfCPJqJL4KLzGOOBVGyBJiOvRCnN9j/ZLsVP9R4GS\nnE4F3EXmKESGWvOJ7XDMBdCdwXEUI/cco3gIDZMYFbVfGPEzVYZ55e89Q/n8K9Nz\n8MzLZUZvF9IjGjmFPf3CQyXtUhPJMwseOgXa3zBJDGlX4hJxTm+tZ0TQ1lQmDGJZ\nNwIDAQAB\n-----END PUBLIC KEY-----",
-            "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.033914"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"2048\",\"x\":\"aG4ybDJqdXcxdjc=\"}",
+            "parameters": "{\"prime\":\"ZnV6ZXN6ZjFoc28=\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T10:50:56.777009"
         },
         "DH-3072": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqLt3lmMYDxzxBMsLsLy5\nUXTcZrVCCDFAdkGQoMN5Vm+6oLlJfJMrUTJG/CQbRWmm2hUDzNFI3PwFiY9cM+/m\nOxiPh3ZsIbLPClDbvHmswnVGI5rMFF9HPKtQ0jHAPGwmDkNyIQNhOSmnhIg6iE9M\nDHzNOGnxJ3AdORcLok1AQA0FfCPJqJL4KLzGOOBVGyBJiOvRCnN9j/ZLsVP9R4GS\nnE4F3EXmKESGWvOJ7XDMBdCdwXEUI/cco3gIDZMYFbVfGPEzVYZ55e89Q/n8K9Nz\n8MzLZUZvF9IjGjmFPf3CQyXtUhPJMwseOgXa3zBJDGlX4hJxTm+tZ0TQ1lQmDGJZ\nNwIDAQAB\n-----END PUBLIC KEY-----",
-            "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.039965"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"3072\",\"x\":\"OXQwMHI2ZTRsOWg=\"}",
+            "parameters": "{\"prime\":\"ZGkwa3prdmNzNw==\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T10:50:56.781681"
         },
         "DH-4096": {
-            "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqLt3lmMYDxzxBMsLsLy5\nUXTcZrVCCDFAdkGQoMN5Vm+6oLlJfJMrUTJG/CQbRWmm2hUDzNFI3PwFiY9cM+/m\nOxiPh3ZsIbLPClDbvHmswnVGI5rMFF9HPKtQ0jHAPGwmDkNyIQNhOSmnhIg6iE9M\nDHzNOGnxJ3AdORcLok1AQA0FfCPJqJL4KLzGOOBVGyBJiOvRCnN9j/ZLsVP9R4GS\nnE4F3EXmKESGWvOJ7XDMBdCdwXEUI/cco3gIDZMYFbVfGPEzVYZ55e89Q/n8K9Nz\n8MzLZUZvF9IjGjmFPf3CQyXtUhPJMwseOgXa3zBJDGlX4hJxTm+tZ0TQ1lQmDGJZ\nNwIDAQAB\n-----END PUBLIC KEY-----",
-            "parameters": null,
-            "timestamp": "2025-04-14T09:18:45.046060"
+            "public_key": "{\"kty\":\"DH\",\"key_ops\":[\"deriveKey\",\"deriveBits\"],\"ext\":true,\"size\":\"4096\",\"x\":\"MTFqaTZzYTI1OTE=\"}",
+            "parameters": "{\"prime\":\"aHl0NW83YnRkZ3Y=\",\"generator\":\"2\"}",
+            "timestamp": "2025-04-18T10:50:56.786541"
         }
     },
     "m9": {

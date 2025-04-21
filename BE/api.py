@@ -20,6 +20,7 @@ import logging
 import atexit
 import base64
 import uvicorn
+from dotenv import load_dotenv
 
 
 # Import our enhanced security components
@@ -35,6 +36,16 @@ logger = logging.getLogger(__name__)
 # Create FastAPI app
 app = FastAPI(title="End-to-End Encrypted Chat with Enhanced Security")
 
+# Get environment variables with defaults
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_secret_key_for_development_only")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "t")
+
+# Parse CORS origins
+cors_origins_str = os.getenv("CORS_ORIGINS", "http://localhost:3000")
+CORS_ORIGINS = [origin.strip() for origin in cors_origins_str.split(",")]
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -48,13 +59,9 @@ app.add_middleware(
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Secret key for JWT
-SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     SECRET_KEY = secrets.token_hex(32)
     print(f"WARNING: Generated temporary secret key: {SECRET_KEY[:5]}...{SECRET_KEY[-5:]}")
-
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 # File path for user database
 USER_DB_FILE = "users_db.json"
@@ -596,9 +603,10 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
             content = message_data.get("content")
             algorithm = message_data.get("algorithm")
             signature = message_data.get("signature")
-
-            print("sss", message_data)
             
+            # Kiểm tra xem người dùng có muốn bỏ qua chữ ký không (cho mục đích kiểm thử)
+            skip_signature = message_data.get("skip_signature", False)
+
             # Verify HMAC signature if provided
             if signature:
                 is_valid = crypto_service.verify_message(
@@ -619,24 +627,24 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
             if recipient in manager.active_connections:
                 recipient_session_id = manager.get_session_id(recipient)
                 
-                # Add HMAC signature to the message using recipient's session
-                if recipient_session_id:
+                # Add HMAC signature to the message using recipient's session if not skipped
+                if recipient_session_id and not skip_signature:
                     # Convert content to bytes if it's a string
                     if isinstance(content, str):
                         content_bytes = content.encode()
                     elif isinstance(content, dict):
                         content_bytes = json.dumps(content).encode()
                     else:
-                        content_bytes = base64.b64decode(content)
+                        content_bytes = content
                     
-                    # Sign the message
-                    signed_message = crypto_service.sign_message(content_bytes, recipient_session_id)
+                    # Generate HMAC signature for the message
+                    signature = crypto_service.generate_hmac(content_bytes, recipient_session_id)
                     
                     forward_message = {
                         "type": "message",
                         "sender": username,
-                        "content": signed_message["message"],
-                        "signature": signed_message["signature"],
+                        "content": content,  # Giữ nguyên nội dung mã hóa gốc
+                        "signature": signature,  # Thêm chữ ký riêng biệt
                         "algorithm": algorithm,
                         "timestamp": datetime.utcnow().isoformat()
                     }
@@ -646,7 +654,7 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
                         recipient
                     )
                 else:
-                    # Recipient doesn't have a secure session
+                    # Đường dẫn không có chữ ký: nếu người dùng yêu cầu bỏ qua hoặc không có phiên bảo mật
                     forward_message = {
                         "type": "message",
                         "sender": username,
@@ -677,6 +685,7 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
         logger.error(f"WebSocket error: {e}")
         manager.disconnect(username)
 
+load_dotenv()
 if __name__ == "__main__":
     # Load user keys and database
     load_user_keys()

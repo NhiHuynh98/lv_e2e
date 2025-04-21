@@ -1,12 +1,15 @@
 // SecurityManager.js - Handles all security features
 
+const API_URL = process.env.REACT_APP_API_URL;
+const API_WS = process.env.REACT_APP_WS_URL;
+
 class SecurityManager {
   constructor() {
     this.sessions = {};
     this.keyExchanges = {};
     this.token = localStorage.getItem('token');
     this.username = localStorage.getItem('username');
-    this.baseUrl = 'http://localhost:8000';
+    this.baseUrl = API_URL;
     this.wsConnection = null;
     this.messageHandlers = [];
     this.pfsCacheKey = 'pfs_sessions';
@@ -305,7 +308,7 @@ class SecurityManager {
     }
 
     // Create a new connection
-    const wsUrl = `ws://localhost:8000/ws/${this.username}?token=${this.token}`;
+    const wsUrl = `${API_WS}/${this.username}?token=${this.token}`;
     this.wsConnection = new WebSocket(wsUrl);
     
     this.wsConnection.onopen = () => {

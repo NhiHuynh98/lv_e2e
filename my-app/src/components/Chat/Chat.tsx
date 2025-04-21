@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useAuth } from '../../context/AuthContext.tsx';
-import EncryptionSelector from '../EncryptionSelector/EncryptionSelector.tsx';
-import MessageList from '../MessageList/MessageList.tsx';
+import { useAuth } from '../../context/AuthContext';
+import EncryptionSelector from '../EncryptionSelector/EncryptionSelector';
+import MessageList from '../MessageList/MessageList';
+import DevTools from '../DevTools/DevTools';
 import { encryptMessage, decryptMessage, generateKeyPair } from '../../services/crypto';
+
+const API_URL = process.env.REACT_APP_API_URL;
+const API_URL_WS = process.env.REACT_APP_WS_URL;
 
 const Chat = () => {
   const { user, token } = useAuth();
@@ -19,8 +23,11 @@ const Chat = () => {
   const [benchmarkResults, setBenchmarkResults] = useState(null);
   const [isBenchmarking, setIsBenchmarking] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [testMode, setTestMode] = useState(false);
+  const [skipSignature, setSkipSignature] = useState(false);
+  const [debugMode, setDebugMode] = useState(false);
   
-  // New state for enhanced security features
+  // Trạng thái cho tính năng bảo mật nâng cao
   const [sessionInfo, setSessionInfo] = useState(null);
   const [securityStatus, setSecurityStatus] = useState({
     pfsActive: false,
@@ -31,10 +38,10 @@ const Chat = () => {
   const wsRef = useRef(null);
   const pfsRotationTimerRef = useRef(null);
   
-  // Connect to WebSocket
+  // Kết nối WebSocket
   useEffect(() => {
     if (user && token) {
-      const ws = new WebSocket(`ws://localhost:8000/ws/${user.username}?token=${token}`);
+      const ws = new WebSocket(`${API_URL_WS}/${user.username}?token=${token}`);
       
       ws.onopen = () => {
         console.log('WebSocket connected');
@@ -45,19 +52,19 @@ const Chat = () => {
         const data = JSON.parse(event.data);
         console.log('WebSocket message received:', data);
         
-        // Handle session information (PFS setup)
+        // Xử lý thông tin phiên (thiết lập PFS)
         if (data.type === 'session_info') {
           handleSessionInfo(data);
           return;
         }
         
-        // Handle PFS key rotation updates
+        // Xử lý cập nhật khóa PFS
         if (data.type === 'pfs_update') {
           handlePFSUpdate(data);
           return;
         }
         
-        // Handle regular messages
+        // Xử lý tin nhắn thông thường
         if (data.sender || data.type === 'message') {
           handleIncomingMessage(data);
         } else if (data.error) {
@@ -76,7 +83,7 @@ const Chat = () => {
       
       wsRef.current = ws;
       
-      // Set up PFS key rotation timer
+      // Thiết lập bộ hẹn giờ xoay khóa PFS
       setupPFSRotationTimer();
       
       return () => {
@@ -86,19 +93,20 @@ const Chat = () => {
     }
   }, [user, token]);
   
-  // Generate key pairs for each algorithm when component mounts
+  // Tạo cặp khóa cho mỗi thuật toán khi component được mount
   useEffect(() => {
     if (user) {
+      console.log("user", user);
       generateAllKeyPairs();
     }
   }, [user]);
   
-  // Handle PFS session information
+  // Xử lý thông tin phiên PFS
   const handleSessionInfo = (data) => {
     console.log('Session info received:', data);
     setSessionInfo(data);
     
-    // Update security status
+    // Cập nhật trạng thái bảo mật
     setSecurityStatus(prev => ({
       ...prev,
       pfsActive: true,
@@ -106,11 +114,11 @@ const Chat = () => {
     }));
   };
   
-  // Handle PFS key rotation updates
+  // Xử lý cập nhật khóa PFS
   const handlePFSUpdate = (data) => {
     console.log('PFS update received:', data);
     
-    // Update session information with new PFS public key
+    // Cập nhật thông tin phiên với khóa công khai PFS mới
     setSessionInfo(prev => {
       if (!prev) return data;
       
@@ -124,11 +132,11 @@ const Chat = () => {
       };
     });
     
-    // Show a system message about key rotation
+    // Hiển thị tin nhắn hệ thống về việc xoay khóa
     const systemMessage = {
       sender: 'System',
       recipient: user.username,
-      content: 'Perfect Forward Secrecy keys have been rotated',
+      content: 'Khóa PFS đã được xoay',
       timestamp: new Date().toISOString(),
       status: 'system'
     };
@@ -136,33 +144,33 @@ const Chat = () => {
     setMessages(prev => [...prev, systemMessage]);
   };
   
-  // Set up PFS key rotation timer
+  // Thiết lập bộ hẹn giờ xoay khóa PFS
   const setupPFSRotationTimer = () => {
-    // Request key rotation every 4.5 minutes (slightly less than the 5-minute server rotation)
+    // Yêu cầu xoay khóa mỗi 4.5 phút (ít hơn một chút so với xoay 5 phút trên server)
     pfsRotationTimerRef.current = setInterval(() => {
       requestPFSKeyRotation();
     }, 4.5 * 60 * 1000);
   };
   
-  // Clear PFS rotation timer
+  // Xóa bộ hẹn giờ xoay khóa PFS
   const clearPFSRotationTimer = () => {
     if (pfsRotationTimerRef.current) {
       clearInterval(pfsRotationTimerRef.current);
     }
   };
   
-  // Request PFS key rotation
+  // Yêu cầu xoay khóa PFS
   const requestPFSKeyRotation = () => {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
       console.log('Requesting PFS key rotation');
       wsRef.current.send(JSON.stringify({
         type: 'pfs_rotation',
-        algorithm: 'ecc' // Using ECC for PFS by default
+        algorithm: 'ecc' // Sử dụng ECC cho PFS mặc định
       }));
     }
   };
   
-  // Manual PFS key rotation (for testing)
+  // Xoay khóa PFS thủ công (để kiểm thử)
   const manualKeyRotation = () => {
     requestPFSKeyRotation();
   };
@@ -183,10 +191,11 @@ const Chat = () => {
         const keyPair = await generateKeyPair(algo);
         newKeyPairs[algo] = keyPair;
         
-        // Register public key with the server
+        // Đăng ký khóa công khai với máy chủ
         await registerPublicKey(algo, keyPair);
       }
-      
+      localStorage.setItem("keyPairs", JSON.stringify(newKeyPairs));
+
       setKeyPairs(newKeyPairs);
     } catch (error) {
       console.error('Error generating key pairs:', error);
@@ -197,7 +206,7 @@ const Chat = () => {
   
   const registerPublicKey = async (algorithm, keyPair) => {
     try {
-      const response = await fetch('http://localhost:8000/key-exchange', {
+      const response = await fetch(`${API_URL}/key-exchange`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -219,10 +228,10 @@ const Chat = () => {
     }
   };
   
-  // Initiate key exchange with another user
+  // Bắt đầu trao đổi khóa với người dùng khác
   const initiateKeyExchange = async (targetUsername) => {
     try {
-      const response = await fetch('http://localhost:8000/key-exchange/initiate', {
+      const response = await fetch(`${API_URL}/key-exchange/initiate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -230,7 +239,7 @@ const Chat = () => {
         },
         body: JSON.stringify({
           target: targetUsername,
-          algorithm: 'ecc' // Using ECC for key exchange by default
+          algorithm: 'ecc' // Sử dụng ECC cho trao đổi khóa mặc định
         })
       });
       
@@ -240,17 +249,17 @@ const Chat = () => {
       
       const data = await response.json();
       
-      // Update security status
+      // Cập nhật trạng thái bảo mật
       setSecurityStatus(prev => ({
         ...prev,
         keyExchangeActive: true
       }));
       
-      // Show a system message about key exchange
+      // Hiển thị tin nhắn hệ thống về trao đổi khóa
       const systemMessage = {
         sender: 'System',
         recipient: user.username,
-        content: `Secure key exchange initiated with ${targetUsername}`,
+        content: `Trao đổi khóa an toàn đã được bắt đầu với ${targetUsername}`,
         timestamp: new Date().toISOString(),
         status: 'system'
       };
@@ -267,7 +276,7 @@ const Chat = () => {
   const fetchPeerPublicKey = async (username, algorithm) => {
     try {
       const algoBase = algorithm.split('-')[0];
-      const response = await fetch(`http://localhost:8000/users/${username}/public-key/${algorithm}`, {
+      const response = await fetch(`${API_URL}/users/${username}/public-key/${algorithm}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -304,7 +313,7 @@ const Chat = () => {
     if (!messageText.trim() || !selectedRecipient) return;
     
     try {
-      // Make sure we have the recipient's public key
+      // Đảm bảo chúng ta có khóa công khai của người nhận
       let peerKey = peerKeys[selectedRecipient]?.[encryptionAlgorithm];
       
       if (!peerKey) {
@@ -314,7 +323,7 @@ const Chat = () => {
         }
       }
       
-      // Encrypt the message using the user-selected algorithm
+      // Mã hóa tin nhắn bằng thuật toán do người dùng chọn
       const encrypted = await encryptMessage(
         messageText, 
         peerKey.public_key, 
@@ -323,30 +332,32 @@ const Chat = () => {
         peerKey.parameters
       );
       
-      // Send the encrypted message via WebSocket
+      // Gửi tin nhắn đã mã hóa qua WebSocket
       if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
         wsRef.current.send(JSON.stringify({
           recipient: selectedRecipient,
           content: encrypted,
-          algorithm: encryptionAlgorithm
+          algorithm: encryptionAlgorithm,
+          skip_signature: skipSignature // Thêm tùy chọn bỏ qua chữ ký
         }));
         
-        // Add to local messages
+        // Thêm vào tin nhắn cục bộ
         const newMessage = {
           sender: user.username,
           recipient: selectedRecipient,
-          content: messageText, // Store plain text for display
+          content: messageText, // Lưu trữ văn bản thuần túy để hiển thị
           algorithm: encryptionAlgorithm,
           timestamp: new Date().toISOString(),
-          status: 'sent'
+          status: 'sent',
+          skippedSignature: skipSignature // Đánh dấu nếu đã bỏ qua chữ ký
         };
         
         setMessages(prev => [...prev, newMessage]);
         
-        // Update conversation
+        // Cập nhật cuộc trò chuyện
         updateConversation(selectedRecipient, newMessage);
         
-        // Clear message input
+        // Xóa đầu vào tin nhắn
         setMessageText('');
       } else {
         throw new Error('WebSocket not connected');
@@ -357,97 +368,119 @@ const Chat = () => {
     }
   };
   
+  // Phiên bản cải tiến đã sửa để xử lý tất cả các tin nhắn
   const handleIncomingMessage = async (data) => {
     try {
       const { sender, content, algorithm, timestamp, signature, type } = data;
       
-      // Create a message object
-      let newMessage;
+      // Ghi log tin nhắn gốc để gỡ lỗi
+      console.log('Processing incoming message:', {
+        sender,
+        contentType: typeof content,
+        contentPreview: typeof content === 'string' ? 
+          content.substring(0, 30) + '...' : 'non-string content',
+        algorithm,
+        hasSignature: Boolean(signature)
+      });
       
-      // For HMAC-verified messages
-      if (signature) {
-        console.log('Received HMAC-verified message');
-        
-        // For messages that already include HMAC verification
-        let decryptedContent;
-        
-        try {
-          // If content is base64-encoded
-          const contentBytes = typeof content === 'string' ? 
-            atob(content) : 
-            content;
-          
-          decryptedContent = contentBytes;
-        } catch (e) {
-          // If decoding fails, use as is
-          decryptedContent = content;
-        }
-        
-        newMessage = {
-          sender,
-          recipient: user.username,
-          content: decryptedContent,
-          algorithm: algorithm || 'pfs-hmac',
-          timestamp: timestamp || new Date().toISOString(),
-          status: 'received',
-          authenticated: true // Mark as HMAC-authenticated
-        };
-      } else {
-        // For regular messages using the old encryption method
-        const algoBase = algorithm.split('-')[0];
-        const keyPair = keyPairs[algorithm];
-        
-        if (!keyPair) {
-          throw new Error(`No key pair found for algorithm ${algorithm}`);
-        }
-        
-        let decrypted;
-        
-        // For DH, we need to establish a shared secret
-        if (algoBase === 'DH') {
-          // Make sure we have the sender's public key
-          let senderPublicKey = peerKeys[sender]?.[algorithm]?.public_key;
-          
-          if (!senderPublicKey) {
-            const keyData = await fetchPeerPublicKey(sender, algorithm);
-            senderPublicKey = keyData.public_key;
-          }
-          
-          // Use the shared secret to decrypt
-          decrypted = await decryptMessage(
-            content,
-            keyPair.privateKey,
-            algorithm,
-            senderPublicKey
-          );
-        } else {
-          // For RSA and ECC
-          decrypted = await decryptMessage(
-            content,
-            keyPair.privateKey,
-            algorithm
-          );
-        }
-        
-        newMessage = {
-          sender,
-          recipient: user.username,
-          content: decrypted, // Decrypted content
-          algorithm,
-          timestamp: timestamp || new Date().toISOString(),
-          status: 'received'
-        };
+      // Xác định thuật toán để sử dụng
+      const actualAlgorithm = algorithm || 'RSA-2048'; // Fallback mặc định
+      
+      const stored = JSON.parse(localStorage.getItem("keyPairs"));
+      console.log("stored", stored);
+
+      // Lấy cặp khóa thích hợp để giải mã
+      const keyPair = stored[actualAlgorithm];
+      if (!keyPair) {
+        throw new Error(`No key pair found for algorithm ${actualAlgorithm}`);
       }
       
-      // Add to messages
+      // Giải mã nội dung bất kể có chữ ký hay không
+      let decryptedContent;
+      const algoBase = actualAlgorithm.split('-')[0];
+      
+      console.log('Attempting to decrypt with algorithm:', actualAlgorithm);
+      
+      // Đối với DH, chúng ta cần khóa công khai của người gửi để thiết lập bí mật chung
+      if (algoBase === 'DH') {
+        // Đảm bảo chúng ta có khóa công khai của người gửi
+        let senderPublicKey = peerKeys[sender]?.[actualAlgorithm]?.public_key;
+        
+        if (!senderPublicKey) {
+          const keyData = await fetchPeerPublicKey(sender, actualAlgorithm);
+          senderPublicKey = keyData.public_key;
+        }
+        
+        // Sử dụng bí mật chung để giải mã
+        decryptedContent = await decryptMessage(
+          content,
+          keyPair.privateKey,
+          actualAlgorithm,
+          senderPublicKey
+        );
+      } else {
+        // Đối với RSA và ECC
+        decryptedContent = await decryptMessage(
+          content,
+          keyPair.privateKey,
+          actualAlgorithm
+        );
+      }
+      
+      console.log('Decryption successful:', decryptedContent);
+      
+      // Tạo đối tượng tin nhắn với nội dung đã giải mã
+      const newMessage = {
+        sender,
+        recipient: user.username,
+        content: decryptedContent, // Nội dung đã giải mã đúng
+        algorithm: actualAlgorithm,
+        timestamp: timestamp || new Date().toISOString(),
+        status: 'received',
+        authenticated: Boolean(signature) // Đánh dấu là đã xác thực HMAC nếu có chữ ký
+      };
+      
+      // Thêm vào tin nhắn
       setMessages(prev => [...prev, newMessage]);
       
-      // Update conversation
+      // Cập nhật cuộc trò chuyện
       updateConversation(sender, newMessage);
       
     } catch (error) {
       console.error('Error processing incoming message:', error);
+      // Thêm tin nhắn hệ thống về lỗi giải mã
+      const errorMessage = {
+        sender: 'System',
+        recipient: user.username,
+        content: `Không thể giải mã tin nhắn: ${error.message}`,
+        timestamp: new Date().toISOString(),
+        status: 'error'
+      };
+      setMessages(prev => [...prev, errorMessage]);
     }
+  };
+  
+  // Mô phỏng tin nhắn không có chữ ký (cho kiểm thử)
+  const simulateMessageWithoutSignature = () => {
+    if (!selectedRecipient) return;
+    
+    // Tạo tin nhắn mô phỏng đã mã hóa
+    const mockEncrypted = "MOCK_ENCRYPTED_CONTENT_" + Date.now();
+    
+    // Tạo tin nhắn giả không có chữ ký
+    const mockMessage = {
+      type: "message",
+      sender: selectedRecipient,
+      content: mockEncrypted,
+      algorithm: encryptionAlgorithm,
+      timestamp: new Date().toISOString()
+      // không có chữ ký
+    };
+    
+    console.log('Simulating message without signature:', mockMessage);
+    
+    // Xử lý tin nhắn mô phỏng
+    handleIncomingMessage(mockMessage);
   };
   
   const updateConversation = (contactUsername, message) => {
@@ -463,7 +496,7 @@ const Chat = () => {
   const selectRecipient = (username) => {
     setSelectedRecipient(username);
     
-    // Initiate key exchange when selecting a new recipient
+    // Bắt đầu trao đổi khóa khi chọn người nhận mới
     if (!securityStatus.keyExchangeActive) {
       initiateKeyExchange(username);
     }
@@ -472,7 +505,7 @@ const Chat = () => {
   const handleBenchmark = async () => {
     setIsBenchmarking(true);
     try {
-      const response = await fetch('http://localhost:8000/benchmark', {
+      const response = await fetch(`${API_URL}/benchmark`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -491,10 +524,10 @@ const Chat = () => {
     }
   };
 
-  // Get security status
+  // Lấy trạng thái bảo mật
   const getSecurityStatus = async () => {
     try {
-      const response = await fetch('http://localhost:8000/security/status', {
+      const response = await fetch(`${API_URL}/security/status`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -507,7 +540,7 @@ const Chat = () => {
       const status = await response.json();
       console.log('Security status:', status);
       
-      // Update security status
+      // Cập nhật trạng thái bảo mật
       setSecurityStatus({
         pfsActive: status.has_active_session && Object.keys(status.pfs).length > 0,
         hmacActive: status.has_active_session && status.hmac?.active,
@@ -522,8 +555,28 @@ const Chat = () => {
     <div className="flex flex-col h-screen">
       <div className="bg-gray-800 text-white p-4">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-xl font-bold">E2E Encrypted Chat</h1>
+          <h1 className="text-xl font-bold">Chat Mã Hóa Đầu Cuối</h1>
           <div className="flex items-center space-x-4">
+            {/* Chế độ kiểm thử */}
+            <div className="flex items-center">
+              <label className="flex items-center cursor-pointer">
+                <div className="relative">
+                  <input 
+                    type="checkbox" 
+                    className="sr-only" 
+                    checked={testMode} 
+                    onChange={() => setTestMode(!testMode)} 
+                  />
+                  <div className={`block w-10 h-6 rounded-full ${testMode ? 'bg-green-400' : 'bg-gray-600'}`}></div>
+                  <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition ${testMode ? 'transform translate-x-4' : ''}`}></div>
+                </div>
+                <div className="ml-2 text-sm">Chế độ kiểm thử</div>
+              </label>
+            </div>
+            
+            <span className="mx-2">|</span>
+            
+            {/* Trạng thái bảo mật */}
             <div className="flex items-center space-x-2">
               <span className={`w-3 h-3 rounded-full ${securityStatus.pfsActive ? 'bg-green-400' : 'bg-red-400'}`}></span>
               <span className="text-xs">PFS</span>
@@ -534,16 +587,18 @@ const Chat = () => {
             </div>
             <div className="flex items-center space-x-2">
               <span className={`w-3 h-3 rounded-full ${securityStatus.keyExchangeActive ? 'bg-green-400' : 'bg-red-400'}`}></span>
-              <span className="text-xs">Key Exchange</span>
+              <span className="text-xs">Trao đổi khóa</span>
             </div>
+            
             <span className="mx-2">|</span>
+            
             <span className="mr-2">
               {isConnected ? (
                 <span className="text-green-400">●</span>
               ) : (
                 <span className="text-red-400">●</span>
               )}
-              {isConnected ? ' Connected' : ' Disconnected'}
+              {isConnected ? ' Đã kết nối' : ' Mất kết nối'}
             </span>
             <span className="font-medium">{user?.username}</span>
           </div>
@@ -554,18 +609,33 @@ const Chat = () => {
         {/* Sidebar */}
         <div className="w-1/4 bg-gray-100 p-4 border-r">
           <div className="mb-4">
-            <h2 className="font-bold mb-2">Encryption Settings</h2>
+            <h2 className="font-bold mb-2">Cài đặt mã hóa</h2>
             <EncryptionSelector 
               selectedAlgorithm={encryptionAlgorithm}
               onChange={setEncryptionAlgorithm} 
             />
+            
+            {/* Tùy chọn bỏ qua HMAC cho kiểm thử */}
+            <div className="mt-2 flex items-center">
+              <input
+                type="checkbox"
+                id="skipSignature"
+                checked={skipSignature}
+                onChange={(e) => setSkipSignature(e.target.checked)}
+                className="mr-2"
+              />
+              <label htmlFor="skipSignature" className="text-sm text-gray-600">
+                Bỏ qua chữ ký HMAC (chỉ để kiểm thử)
+              </label>
+            </div>
+            
             <div className="mt-4 space-y-2">
               <button 
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full"
                 onClick={generateAllKeyPairs}
                 disabled={isGeneratingKeys}
               >
-                {isGeneratingKeys ? 'Generating Keys...' : 'Regenerate Keys'}
+                {isGeneratingKeys ? 'Đang tạo khóa...' : 'Tạo lại khóa'}
               </button>
               
               <button 
@@ -573,18 +643,28 @@ const Chat = () => {
                 onClick={manualKeyRotation}
                 disabled={!isConnected}
               >
-                Rotate PFS Keys
+                Xoay khóa PFS
               </button>
+              
+              {testMode && (
+                <button 
+                  className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 w-full"
+                  onClick={simulateMessageWithoutSignature}
+                  disabled={!selectedRecipient}
+                >
+                  Mô phỏng tin nhắn không HMAC
+                </button>
+              )}
             </div>
           </div>
           
-          <h2 className="font-bold mb-2">Contacts</h2>
+          <h2 className="font-bold mb-2">Danh bạ</h2>
           <div className="mb-4">
             <div className="flex">
               <input
                 type="text"
                 className="flex-1 p-2 border rounded-l"
-                placeholder="Username"
+                placeholder="Tên người dùng"
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
               />
@@ -620,40 +700,40 @@ const Chat = () => {
                 <div className="text-sm text-gray-500 truncate">
                   {receivedMessages[username].length > 0
                     ? `${receivedMessages[username][receivedMessages[username].length - 1].content.substring(0, 30)}...`
-                    : 'No messages yet'}
+                    : 'Chưa có tin nhắn'}
                 </div>
               </div>
             ))}
           </div>
           
           <div className="mt-4">
-            <h2 className="font-bold mb-2">Performance</h2>
+            <h2 className="font-bold mb-2">Hiệu suất</h2>
             <button
               className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 w-full"
               onClick={handleBenchmark}
               disabled={isBenchmarking}
             >
-              {isBenchmarking ? 'Running Benchmark...' : 'Run Benchmark'}
+              {isBenchmarking ? 'Đang chạy benchmark...' : 'Chạy benchmark'}
             </button>
           </div>
         </div>
         
-        {/* Main Chat Area */}
+        {/* Khu vực chat chính */}
         <div className="flex-1 flex flex-col">
           {selectedRecipient ? (
             <>
               <div className="bg-gray-200 p-3 border-b">
                 <div className="font-medium">{selectedRecipient}</div>
                 <div className="text-xs text-gray-500 flex items-center">
-                  <span>Using {encryptionAlgorithm} encryption</span>
+                  <span>Sử dụng mã hóa {encryptionAlgorithm}</span>
                   {securityStatus.pfsActive && (
                     <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">
-                      PFS Active
+                      PFS đang hoạt động
                     </span>
                   )}
                   {securityStatus.hmacActive && (
                     <span className="ml-2 px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs">
-                      HMAC Active
+                      HMAC đang hoạt động
                     </span>
                   )}
                 </div>
@@ -664,9 +744,11 @@ const Chat = () => {
                   messages={messages.filter(msg => 
                     (msg.sender === user.username && msg.recipient === selectedRecipient) ||
                     (msg.sender === selectedRecipient && msg.recipient === user.username) ||
-                    (msg.status === 'system')
+                    (msg.status === 'system') || 
+                    (msg.status === 'error')
                   )}
                   currentUser={user.username}
+                  debugMode={debugMode}
                 />
               </div>
               
@@ -676,7 +758,7 @@ const Chat = () => {
                     <input
                       type="text"
                       className="flex-1 p-2 border rounded-l"
-                      placeholder="Type a message..."
+                      placeholder="Nhập tin nhắn..."
                       value={messageText}
                       onChange={(e) => setMessageText(e.target.value)}
                     />
@@ -685,24 +767,24 @@ const Chat = () => {
                       className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600"
                       disabled={!isConnected}
                     >
-                      Send
-                    </button>
+                      Gửi
+                      </button>
                   </div>
                 </form>
               </div>
             </>
           ) : (
             <div className="flex-1 flex items-center justify-center text-gray-400">
-              Select a contact to start chatting
+              Chọn người liên hệ để bắt đầu trò chuyện
             </div>
           )}
         </div>
         
-        {/* Benchmark Results Panel */}
+        {/* Panel kết quả benchmark */}
         {benchmarkResults && (
           <div className="w-1/3 bg-gray-100 p-4 border-l overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold">Benchmark Results</h2>
+              <h2 className="font-bold">Kết quả Benchmark</h2>
               <button
                 className="text-gray-500 hover:text-gray-700"
                 onClick={() => setBenchmarkResults(null)}
@@ -711,21 +793,21 @@ const Chat = () => {
               </button>
             </div>
             
-            {/* Display different sections of benchmark results */}
+            {/* Hiển thị các phần khác nhau của kết quả benchmark */}
             <div>
-              {/* Encryption benchmark results */}
+              {/* Kết quả benchmark mã hóa */}
               {benchmarkResults.encryption && (
                 <div className="mb-6">
-                  <h3 className="font-bold text-lg">Encryption</h3>
+                  <h3 className="font-bold text-lg">Mã hóa</h3>
                   {Object.entries(benchmarkResults.encryption).map(([algo, data]) => (
                     <div key={algo} className="mb-4 border-b pb-2">
                       <h4 className="font-medium">{algo}</h4>
                       {Object.entries(data).map(([sizeKey, metrics]) => (
                         <div key={sizeKey} className="text-sm">
-                          <div className="bg-gray-200 p-1 mt-1">Size: {metrics.key_size}/{metrics.message_size} bytes</div>
+                          <div className="bg-gray-200 p-1 mt-1">Kích thước: {metrics.key_size}/{metrics.message_size} bytes</div>
                           <div className="grid grid-cols-2 gap-x-2 text-xs p-1">
-                            <div>Encrypt: {metrics.encryption_time_ms.toFixed(2)} ms</div>
-                            <div>Decrypt: {metrics.decryption_time_ms.toFixed(2)} ms</div>
+                            <div>Mã hóa: {metrics.encryption_time_ms.toFixed(2)} ms</div>
+                            <div>Giải mã: {metrics.decryption_time_ms.toFixed(2)} ms</div>
                           </div>
                         </div>
                       ))}
@@ -734,10 +816,10 @@ const Chat = () => {
                 </div>
               )}
               
-              {/* Key exchange benchmark results */}
+              {/* Kết quả benchmark trao đổi khóa */}
               {benchmarkResults.key_exchange && (
                 <div className="mb-6">
-                  <h3 className="font-bold text-lg">Key Exchange</h3>
+                  <h3 className="font-bold text-lg">Trao đổi khóa</h3>
                   {Object.entries(benchmarkResults.key_exchange).map(([algo, data]) => (
                     <div key={algo} className="text-sm mb-2">
                       <div>{algo}: {data.time_ms.toFixed(2)} ms</div>
@@ -746,16 +828,16 @@ const Chat = () => {
                 </div>
               )}
               
-              {/* HMAC benchmark results */}
+              {/* Kết quả benchmark HMAC */}
               {benchmarkResults.hmac && (
                 <div className="mb-6">
                   <h3 className="font-bold text-lg">HMAC</h3>
                   {Object.entries(benchmarkResults.hmac).map(([size, data]) => (
                     <div key={size} className="text-sm mb-2">
-                      <div>Message size: {size} bytes</div>
+                      <div>Kích thước tin nhắn: {size} bytes</div>
                       <div className="grid grid-cols-2 gap-x-2 text-xs">
-                        <div>Generate: {data.generation_time_ms.toFixed(2)} ms</div>
-                        <div>Verify: {data.verification_time_ms.toFixed(2)} ms</div>
+                        <div>Tạo: {data.generation_time_ms.toFixed(2)} ms</div>
+                        <div>Xác minh: {data.verification_time_ms.toFixed(2)} ms</div>
                       </div>
                     </div>
                   ))}
@@ -765,8 +847,11 @@ const Chat = () => {
           </div>
         )}
       </div>
+      
+      {/* Thêm DevTools chỉ trong chế độ phát triển */}
+      {process.env.NODE_ENV === 'development' && <DevTools wsRef={wsRef} user={user} setMessages={setMessages} />}
     </div>
-  )
-}
+  );
+};
 
 export default Chat;

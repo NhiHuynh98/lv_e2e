@@ -8,6 +8,9 @@
  * @param {Object} message - Session info message received from server
  * @returns {Object} Session information
  */
+
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const setupSecureSession = (message) => {
     // Extract session information
     const sessionId = message.session_id;
@@ -152,7 +155,7 @@ export const setupSecureSession = (message) => {
    */
   export const initiateKeyExchange = async (token, targetUsername, algorithm = 'ecc') => {
     try {
-      const response = await fetch('http://localhost:8000/key-exchange/initiate', {
+      const response = await fetch(`${API_URL}/key-exchange/initiate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -200,7 +203,7 @@ export const setupSecureSession = (message) => {
    */
   export const completeKeyExchange = async (token, exchangeId, publicKey) => {
     try {
-      const response = await fetch('http://localhost:8000/key-exchange/complete', {
+      const response = await fetch(`${API_URL}/key-exchange/complete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -245,7 +248,7 @@ export const setupSecureSession = (message) => {
    */
   export const getSecurityStatus = async (token) => {
     try {
-      const response = await fetch('http://localhost:8000/security/status', {
+      const response = await fetch(`${API_URL}/security/status`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

@@ -127,6 +127,21 @@ class HMACManager:
         hmac_digest = self.generate_hmac(message, key, session_id, hash_algorithm)
         return base64.b64encode(hmac_digest).decode('ascii')
     
+    def get_hmac_session(self, session_id):
+        """
+        Lấy thông tin phiên HMAC dựa trên session_id
+        
+        Args:
+            session_id (str): ID của phiên
+                
+        Returns:
+            dict: Thông tin phiên HMAC hoặc None nếu không tìm thấy
+        """
+        # Kiểm tra nếu session_id tồn tại trong mac_keys
+        key = self.mac_keys.get(session_id)
+        if key:
+            return {"key": key}  # Return a dict with the key
+        return None
     def verify_hmac(self, 
                    message: bytes, 
                    signature: bytes, 
