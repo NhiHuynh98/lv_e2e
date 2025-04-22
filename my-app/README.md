@@ -60,7 +60,7 @@ pip install -r requirements.txt
 python api.py
 ```
 
-The backend server will run on http://localhost:8000.
+The backend server will run on http://45.32.20.179:8000.
 
 ### Frontend Setup
 

@@ -5,8 +5,8 @@ import MessageList from '../MessageList/MessageList';
 import DevTools from '../DevTools/DevTools';
 import { encryptMessage, decryptMessage, generateKeyPair } from '../../services/crypto';
 
-const API_URL = 'http://localhost:8000';
-const API_URL_WS = 'ws://localhost:8000/ws';
+const API_URL = 'http://45.32.20.179:8000';
+const API_URL_WS = 'ws://45.32.20.179:8000/ws';
 
 const Chat = () => {
   const { user, token } = useAuth();

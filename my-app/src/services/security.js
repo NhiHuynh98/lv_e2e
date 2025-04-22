@@ -1,7 +1,7 @@
 // SecurityManager.js - Handles all security features
 
-const API_URL = 'http://localhost:8000';
-const API_WS = 'ws://localhost:8000/ws';
+const API_URL = 'http://45.32.20.179:8000';
+const API_WS = 'ws://45.32.20.179:8000/ws';
 
 class SecurityManager {
   constructor() {

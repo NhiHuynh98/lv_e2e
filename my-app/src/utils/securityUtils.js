@@ -9,7 +9,7 @@
  * @returns {Object} Session information
  */
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://45.32.20.179:8000';
 
 
 export const setupSecureSession = (message) => {
