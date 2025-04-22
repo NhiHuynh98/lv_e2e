@@ -1,7 +1,7 @@
 // SecurityManager.js - Handles all security features
 
-const API_URL = process.env.REACT_APP_API_URL;
-const API_WS = process.env.REACT_APP_WS_URL;
+const API_URL = 'http://localhost:8000';
+const API_WS = 'ws://localhost:8000/ws';
 
 class SecurityManager {
   constructor() {
