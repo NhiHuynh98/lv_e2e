@@ -47,14 +47,13 @@ This application is designed to compare different encryption algorithms (RSA, EC
 ```bash
 # Clone the repository
 git clone git@github.com:NhiHuynh98/lv_e2e.git
-cd lv_e2e
+cd lv_e2e/BE
 
 # Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-cd BE
 pip install -r requirements.txt
 
 # Start the server
