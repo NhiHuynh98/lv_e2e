@@ -20,7 +20,6 @@ import logging
 import atexit
 import base64
 import uvicorn
-from dotenv import load_dotenv
 
 
 # Import our enhanced security components
@@ -685,7 +684,6 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
         logger.error(f"WebSocket error: {e}")
         manager.disconnect(username)
 
-load_dotenv()
 if __name__ == "__main__":
     # Load user keys and database
     load_user_keys()

@@ -50,7 +50,7 @@ git clone git@github.com:NhiHuynh98/lv_e2e.git
 cd lv_e2e/BE
 
 # Create and activate virtual environment
-python -m venv venv
+python3.8 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
