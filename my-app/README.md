@@ -70,13 +70,13 @@ The backend server will run on http://localhost:8000.
 cd my-app
 
 # Install dependencies
-npm install
+yarn install
 
 # Start development server
-npm start
+npm run dev or yarn dev
 ```
 
-The frontend development server will run on http://localhost:3000.
+The frontend development server will run on http://localhost:5173.
 
 ## Usage
 
