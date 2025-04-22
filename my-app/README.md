@@ -46,19 +46,19 @@ This application is designed to compare different encryption algorithms (RSA, EC
 
 ```bash
 # Clone the repository
-git clone [repo-url]
-cd secure-chat-app
+git clone git@github.com:NhiHuynh98/lv_e2e.git
+cd lv_e2e
 
 # Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-cd backend
+cd BE
 pip install -r requirements.txt
 
 # Start the server
-python server.py
+python api.py
 ```
 
 The backend server will run on http://localhost:8000.
@@ -67,7 +67,7 @@ The backend server will run on http://localhost:8000.
 
 ```bash
 # Navigate to frontend directory
-cd frontend
+cd my-app
 
 # Install dependencies
 npm install
